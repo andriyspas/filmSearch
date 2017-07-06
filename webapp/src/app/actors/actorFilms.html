@@ -1,0 +1,9 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="films.cancel()"><span aria-hidden="true">&times;</span></button>
+    <h3 class="modal-title">Films chart</h3>
+</div>
+<div class="modal-body text-center">
+    <canvas id="line" class="chart chart-line" chart-data="[films.ratings]"
+            chart-labels="films.years" chart-legend="false">
+    </canvas>
+</div>

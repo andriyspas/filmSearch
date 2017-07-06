@@ -1,0 +1,70 @@
+<div class="container">
+
+    <div class="row form-group search-input">
+        <div class="col-xs-9">
+            <div class="input-group" ng-if="!main.searchByYear">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <i class="glyphicon glyphicon-search" ng-click="main.getListData()"></i>
+                    </button>
+                </span>
+                <input class="form-control" type="text" placeholder="e.g. 'Yelp', 'Avicii', or 'Gravity'"
+                       ng-model="main.searchInput">
+            </div>
+            <div ng-if="main.searchByYear">
+                <div class="form-inline">
+                    <div class="pull-right">
+                        <button class="btn btn-default" type="button" ng-click="main.toggleInRange()" ng-bind="main.searchInRange ? 'by year' : 'in range'"></button>
+                    </div>
+
+                    <div class="pull-right year" ng-if="!main.searchInRange">
+                        <label class="control-label">Year:</label>
+                        <input class="form-control" type="text" ng-model="main.year">
+                    </div>
+
+                    <div class="pull-right range2" ng-if="main.searchInRange">
+                        <label class="control-label">To:</label>
+                        <input class="form-control" type="text" ng-model="main.range2">
+                    </div>
+                    <div class="pull-right range1" ng-if="main.searchInRange">
+                        <label class="control-label">From:</label>
+                        <input class="form-control" type="text" ng-model="main.range1">
+                    </div>
+
+                    <div class="pull-right search-button">
+                        <button class="btn btn-default" type="button" ng-click="main.getListDataByYear()">
+                            <i class="glyphicon glyphicon-search"></i>
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-default" ng-click="main.toggleSearch()" ng-bind="main.searchByYear ? 'by name' : 'by year'"></button>
+        </div>
+        <div class="col-xs-2">
+            <input bs-switch
+                   ng-model="main.searchType"
+                   type="checkbox"
+                   switch-on-text="Films"
+                   switch-off-text="Actors"
+                   switch-on-color="primary"
+                   switch-off-color="success">
+        </div>
+
+    </div>
+
+    <div ng-if="main.searchType && main.films && !main.year && !main.range1">
+        <films film="main.films"></films>
+    </div>
+
+    <div ng-repeat="item in main.films track by $index" ng-if="main.films && (main.year || main.range1)">
+        <films film="item"></films>
+    </div>
+
+    <div ng-if="!main.searchType && main.actors">
+        <actors actor="main.actors"></actors>
+    </div>
+
+</div>

@@ -1,0 +1,99 @@
+<div class="panel-group" ng-if="film">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a role="button" ng-click="film.isCollapsed = !film.isCollapsed" ng-bind="film.title"></a>
+            </h4>
+        </div>
+        <div collapse="film.isCollapsed" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img ng-src="{{(film.poster === 'null') ? 'http://www.expogr.com/uploads/no_image.jpg' : film.poster}}"
+                             class="img-responsive img-thumbnail film-image">
+                    </div>
+                    <div class="col-xs-10">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group" ng-if="film.imdbID">
+                                    <label>IMDB ID:</label>
+                                    <span>{{film.imdbID}}</span>
+                                </div>
+                                <div class="form-group" ng-if="film.imdbRating">
+                                    <label>IMDB rating:</label>
+                                    <span>{{film.imdbRating}}</span>
+                                </div>
+                                <div class="form-group" ng-if="film.imdbVotes">
+                                    <label>IMDB votes:</label>
+                                    <span>{{film.imdbVotes}}</span>
+                                </div>
+                                <div class="form-group" ng-if="film.language">
+                                    <label>Language:</label>
+                                    <span>{{film.language}}</span>
+                                </div>
+                                <div class="form-group" ng-if="film.plot">
+                                    <label>Plot:</label>
+                                    <span>{{film.plot}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group" ng-if="film.actors">
+                                    <label>Actors:</label>
+                            <span ng-repeat="actor in film.actors track by $index">
+                                {{actor}}{{$last ? '' : ', '}}
+                            </span>
+                                </div>
+                                <div class="form-group" ng-if="film.awards">
+                                    <label>Awards:</label>
+                            <span ng-repeat="award in film.awards track by $index">
+                                {{award}}{{$last ? '' : ', '}}
+                            </span>
+                                </div>
+                                <div class="form-group" ng-if="film.country">
+                                    <label>Country:</label>
+                                    <span>{{film.country}}</span>
+                                </div>
+                                <div class="form-group" ng-if="film.director">
+                                    <label>Director:</label>
+                            <span ng-repeat="director in film.director track by $index">
+                                {{director}}{{$last ? '' : ', '}}
+                            </span>
+                                </div>
+                                <div class="form-group" ng-if="film.genres">
+                                    <label>Genres:</label>
+                                    <span ng-repeat="genre in film.genres track by $index">
+                                        {{genre}}{{$last ? '' : ', '}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group" ng-if="film.rated">
+                                    <label>Rated:</label>
+                            <span>
+                                <input type="checkbox" ng-model="film.rated" onclick="return false">
+                            </span>
+                                </div>
+                                <div class="form-group" ng-if="film.released">
+                                    <label>Released:</label>
+                                    <span>{{film.released}}</span>
+                                </div>
+                                <div class="form-group" ng-if="film.runtime">
+                                    <label>Run-time:</label>
+                                    <span>{{film.runtime}}</span>
+                                </div>
+                                <div class="form-group" ng-if="film.type">
+                                    <label>Type:</label>
+                                    <span>{{film.type}}</span>
+                                </div>
+                                <div class="form-group" ng-if="film.year">
+                                    <label>Year:</label>
+                                    <span>{{film.year}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

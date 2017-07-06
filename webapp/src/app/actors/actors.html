@@ -1,0 +1,39 @@
+<div class="panel-group" ng-if="actor">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a role="button" ng-click="actor.isCollapsed = !actor.isCollapsed" ng-bind="actor.name"></a>
+            </h4>
+        </div>
+        <div collapse="actor.isCollapsed" class="panel-collapse collapse in">
+            <div class="panel-body panel-actor">
+                <button class="btn btn-default graph" ng-click="open()">Films chart</button>
+                <div class="row form-group">
+                    <div class="col-xs-2">
+                        <img ng-src="{{(actor.photo === 'null') ? 'http://www.expogr.com/uploads/no_image.jpg' : actor.photo}}"
+                             class="img-responsive img-thumbnail actor-photo">
+                    </div>
+                    <div class="col-xs-10">
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <span ng-bind="actor.name"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Occupation:</label>
+                            <span ng-repeat="occupation in actor.occupation track by $index">
+                                {{occupation}}{{$last ? '' : ', '}}
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Biography:</label>
+                            <span ng-bind="actor.bio"></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-repeat="item in actor.filmDTOs track by $index">
+                    <films film="item"></films>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
