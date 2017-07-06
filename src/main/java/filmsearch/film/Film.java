@@ -18,11 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Film {
 
-    /*@Builder
-    private Film(String title, int year, boolean rated, String released, String runtime, List<Genre> genres, List<Person> directors, List<Person> actors, String plot, String language, String country, URL poster, double imdbRating, int imdbVotes, String imdbId, FilmType filmType){
-
-    }*/
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter

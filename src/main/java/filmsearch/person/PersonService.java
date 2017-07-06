@@ -17,10 +17,10 @@ import java.util.List;
 @Component
 public class PersonService {
 
-    Logger logger = Logger.getLogger(PersonService.class);
+    private Logger logger = Logger.getLogger(PersonService.class);
 
     @Autowired
-    PersonRepository personRepository;
+    private PersonRepository personRepository;
 
     public List<Person> getAllPerson(){
         return personRepository.findAll();

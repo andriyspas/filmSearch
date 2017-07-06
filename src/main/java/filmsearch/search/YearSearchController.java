@@ -16,7 +16,7 @@ import java.util.List;
 public class YearSearchController {
 
     @Autowired
-    YearSearchService yearSearchService;
+    private YearSearchService yearSearchService;
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public YearSearchDTO getForOneYear(@RequestParam int year){

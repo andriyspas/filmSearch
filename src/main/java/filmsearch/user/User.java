@@ -48,19 +48,4 @@ public class User {
     @Setter
     private boolean enabled;
 
-
-    /*@Getter
-    @Setter
-    @ElementCollection(targetClass = UserRoles.class)
-    @Enumerated(EnumType.STRING)
-    private List<UserRoles> roles;
-
-
-    public List<String> getRolesAsStrings(){
-        List<String> roleList = new ArrayList<>();
-
-        roles.forEach(userRole -> roleList.add(userRole.name()));
-
-        return roleList;
-    }*/
 }

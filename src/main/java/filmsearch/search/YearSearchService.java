@@ -2,8 +2,8 @@ package filmsearch.search;
 
 import filmsearch.film.Film;
 import filmsearch.film.FilmDTO;
-import filmsearch.film.FilmMapper;
 import filmsearch.film.FilmRepository;
+import filmsearch.mapper.ProjectModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,16 +17,16 @@ import java.util.List;
 public class YearSearchService {
 
     @Autowired
-    FilmRepository filmRepository;
+    private FilmRepository filmRepository;
     @Autowired
-    FilmMapper filmMapper;
+    private ProjectModelMapper mapper;
 
     public YearSearchDTO getByYear(int year){
         List<Film> filmList = filmRepository.findByYear(year);
         if(!filmList.isEmpty()) {
             YearSearchDTO yearSearchDTO = new YearSearchDTO();
             yearSearchDTO.setYear(year);
-            yearSearchDTO.setFilmDTOs(filmMapper.mapListToDTO(filmList));
+            yearSearchDTO.setFilmDTOs(mapper.mapList(filmList, FilmDTO.class));
             yearSearchDTO.setAverageRating(calculateAverageRating(yearSearchDTO.getFilmDTOs()));
             return yearSearchDTO;
         }

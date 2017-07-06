@@ -1,7 +1,9 @@
 package filmsearch.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -13,17 +15,27 @@ import java.util.Arrays;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
-    public User registerNewAccount(UserDTO accountDto){
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-        User user = new User();
-        user.setUsername(accountDto.getUsername());
-        user.setFirstName(accountDto.getFirstName());
-        user.setLastName(accountDto.getLastName());
-        user.setPassword(accountDto.getPassword());
-        user.setEmail(accountDto.getEmail());
-        //user.setRoles(Arrays.asList(UserRoles.ROLE_USER));
-        return userRepository.save(user);
+    public ResponseEntity registerNewAccount(UserDTO accountDto){
+        if(!userAlreadyExists(accountDto)) {
+            User user = User.builder()
+                    .username(accountDto.getUsername())
+                    .firstName(accountDto.getFirstName())
+                    .lastName(accountDto.getLastName())
+                    .password(passwordEncoder.encode(accountDto.getPassword()))
+                    .email(accountDto.getEmail())
+                    .build();
+            userRepository.save(user);
+            return new ResponseEntity(HttpStatus.CREATED);
+        }
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    private boolean userAlreadyExists(UserDTO userDTO){
+        return userRepository.findByUsername(userDTO.getUsername()) != null;
     }
 }

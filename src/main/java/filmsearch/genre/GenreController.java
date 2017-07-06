@@ -1,6 +1,7 @@
 package filmsearch.genre;
 
 import com.wordnik.swagger.annotations.Api;
+import filmsearch.mapper.ProjectModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,15 +19,15 @@ import java.util.List;
 public class GenreController {
 
     @Autowired
-    GenreService genreService;
+    private GenreService genreService;
 
     @Autowired
-    GenreMapper genreMapper;
+    private ProjectModelMapper mapper;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<GenreDTO> getAllGenres(){
         List<GenreDTO> genreDTOList = new ArrayList<>();
-        genreService.getAllGenres().forEach(genre -> genreDTOList.add(genreMapper.mapToDTO(genre)));
+        genreService.getAllGenres().forEach(genre -> genreDTOList.add(mapper.map(genre, GenreDTO.class)));
         return genreDTOList;
     }
 

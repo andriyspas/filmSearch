@@ -35,6 +35,7 @@ public class UserDTO {
 
     @Getter
     @Setter
+    @JsonIgnore
     private String password;
 
     @Getter

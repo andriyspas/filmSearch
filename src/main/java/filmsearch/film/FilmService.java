@@ -9,6 +9,7 @@ import filmsearch.requests.GetHttpResponse;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -36,23 +37,6 @@ public class FilmService {
         return filmRepository.findAll();
     }
 
-    public void deleteAll(){
-        filmRepository.deleteAll();
-    }
-
-    public List<Film> addNewFilms(){
-        List<Film> addedFilms = new ArrayList<>();
-        for(int i = 900000; i < 900010; i++){
-            try {
-                addedFilms.add(addNewFilm("http://www.omdbapi.com/?i=tt0" + i +"&plot=short&r=json"));
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-        return addedFilms;
-    }
-
     public Film addByIMDBId(String id) throws Exception{
         Film film = filmRepository.findByImdbID(id);
         if(film == null) {
@@ -61,7 +45,7 @@ public class FilmService {
         return film;
     }
 
-    public Film addByTitle(String title) throws Exception{
+    public Film getByTitle(String title) throws Exception{
         Film film = filmRepository.findByTitle(title.toLowerCase());
         if(film == null) {
             return addNewFilm("http://www.omdbapi.com/?t=" + title.replace(" ", "+").toLowerCase() + "&y=&plot=short&r=json");

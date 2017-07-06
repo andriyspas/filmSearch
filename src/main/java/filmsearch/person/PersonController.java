@@ -1,10 +1,10 @@
 package filmsearch.person;
 
 import com.wordnik.swagger.annotations.Api;
+import filmsearch.mapper.ProjectModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,14 +16,14 @@ import java.util.List;
 public class PersonController {
 
     @Autowired
-    PersonMapper personMapper;
+    ProjectModelMapper mapper;
 
     @Autowired
     PersonService personService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<PersonDTO> getAllPerson(){
-        return personMapper.mapListToDTO(personService.getAllPerson());
+        return mapper.mapList(personService.getAllPerson(), PersonDTO.class);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
@@ -33,12 +33,12 @@ public class PersonController {
 
     @RequestMapping(value = "/get/id/{id}", method = RequestMethod.GET)
     public PersonDTO getById(@PathVariable("id") String id){
-        return personMapper.mapToDTO(personService.getById(id));
+        return mapper.map(personService.getById(id), PersonDTO.class);
     }
 
     @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
     public PersonDTO getByName(@PathVariable(value = "name") String name){
-        return personMapper.mapToDTO(personService.getByName(name));
+        return mapper.map(personService.getByName(name), PersonDTO.class);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
