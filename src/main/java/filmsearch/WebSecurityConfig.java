@@ -33,10 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                .antMatchers("/api/user/register", "/", "/api-docs/**", "/swagger/**").permitAll()
-                .anyRequest().authenticated()
-                .and().httpBasic()
-                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                .antMatchers("*").permitAll();
     }
 
 

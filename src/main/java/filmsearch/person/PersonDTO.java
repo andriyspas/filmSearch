@@ -1,9 +1,7 @@
 package filmsearch.person;
 
 import filmsearch.film.FilmDTO;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,6 +9,8 @@ import java.util.List;
  * Created by Stas on 26.11.2015.
  */
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PersonDTO {
 
     @Getter

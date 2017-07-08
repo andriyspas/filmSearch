@@ -1,13 +1,13 @@
 package filmsearch.genre;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * Created by Stas on 25.11.2015.
  */
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class GenreDTO {
 
     @Getter
