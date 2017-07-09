@@ -27,6 +27,7 @@ angular
             if (vm.searchType) {
                 main.getFilms(vm.searchInput)
                     .then(function (data) {
+                        console.log(data)
                         vm.films = data;
                     });
             } else {

@@ -81,8 +81,12 @@
 
     </div>
 
-    <div ng-if="main.searchType && main.films && !main.year && !main.range1">
-        <films film="main.films"></films>
+    <div
+        ng-repeat="item in main.films track by $index"
+        ng-if="main.searchType && main.films && !main.year && !main.range1">
+
+        <films film="item"></films>
+
     </div>
 
     <div ng-repeat="item in main.films track by $index" ng-if="main.films && (main.year || main.range1)">
