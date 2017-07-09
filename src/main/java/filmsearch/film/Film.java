@@ -32,11 +32,6 @@ public class Film {
     @Getter
     @Setter
     @Column
-    private int year;
-
-    @Getter
-    @Setter
-    @Column
     private boolean rated;
 
     @Getter
@@ -47,7 +42,7 @@ public class Film {
     @Getter
     @Setter
     @Column
-    private String runtime;
+    private int runtime;
 
     @Getter
     @Setter
@@ -82,7 +77,7 @@ public class Film {
     @Getter
     @Setter
     @Column(length = 2000)
-    private URL poster;
+    private String poster;
 
     @Getter
     @Setter
@@ -98,11 +93,9 @@ public class Film {
     @Setter
     @Column
     private String imdbID;
-
+    
     @Getter
     @Setter
     @Column
-    private FilmType type;
-
-
+    private int year;
 }

@@ -10,8 +10,7 @@ import java.util.List;
  */
 @Component
 public interface FilmRepository extends CrudRepository<Film, String> {
-    Film findByTitle(String title);
-    Film findByImdbID(String imdbId);
+    List<Film> findByTitleContaining(String title);
     List<Film> findByYear(int year);
 
     @Override

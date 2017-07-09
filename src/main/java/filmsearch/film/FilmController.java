@@ -26,14 +26,14 @@ public class FilmController {
         return mapper.mapList(filmService.getAllFilms(), FilmDTO.class);
     }
 
-    @RequestMapping(value = "/get/id/{imdbID}", method = RequestMethod.GET)
-    public FilmDTO addOrGetByIMDBId(@PathVariable(value = "imdbID") String imdbID)throws Exception{
-        return mapper.map(filmService.addByIMDBId(imdbID), FilmDTO.class);
+    @RequestMapping(value = "/get/show/{title}", method = RequestMethod.GET)
+    public List<FilmDTO> addOrGetTvShowByTitle(@PathVariable(value = "title") String title)throws Exception{
+        return mapper.mapList(filmService.gettvShowByTitle(title), FilmDTO.class);
     }
 
-    @RequestMapping(value = "/get/title/{title}", method = RequestMethod.GET)
-    public FilmDTO addOrGetByTitle(@PathVariable(value = "title") String title) throws Exception{
-        return mapper.map(filmService.getByTitle(title), FilmDTO.class);
+    @RequestMapping(value = "/get/film/title/{title}", method = RequestMethod.GET)
+    public List<FilmDTO> addOrGetFilmByTitle(@PathVariable(value = "title") String title) throws Exception{
+        return mapper.mapList(filmService.getFilmByTitle(title), FilmDTO.class);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
