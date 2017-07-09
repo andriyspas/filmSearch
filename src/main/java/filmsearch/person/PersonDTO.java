@@ -30,5 +30,5 @@ public class PersonDTO {
     private String bio;
     @Getter
     @Setter
-    private List<FilmDTO> filmDTOs;
+    private List<FilmDTO> filmList;
 }
