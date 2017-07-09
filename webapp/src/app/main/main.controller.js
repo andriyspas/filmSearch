@@ -1,9 +1,8 @@
-(function () {
-    'use strict';
+'use strict';
 
-    angular
-        .module('webapp')
-        .controller('mainController', mainController);
+angular
+    .module('webapp')
+    .controller('mainController', mainController);
 
     /** @ngInject */
     function mainController(main) {
@@ -22,8 +21,8 @@
             if (!vm.searchInput) {
                 return false;
             }
-            delete vm.films;
-            delete vm.actors;
+
+            removeList();
 
             if (vm.searchType) {
                 main.getFilms(vm.searchInput)
@@ -39,14 +38,13 @@
         }
 
         function getListDataByYear() {
-            delete vm.films;
-            delete vm.actors;
-            
+            removeList();
+
             if (vm.range1 && vm.range2) {
                 main.getFilmsInRange(vm.range1, vm.range2)
                     .then(function (data) {
                         vm.films = [];
-                        angular.forEach(data, function (val) {
+                        angular.forEach(data, function(val) {
                             vm.films = vm.films.concat(val.filmDTOs);
                         });
                     });
@@ -56,9 +54,13 @@
                 main.getFilmsByYear(vm.year)
                     .then(function (data) {
                         vm.films = data.filmDTOs;
-                        console.log(vm.films);
                     });
             }
+        }
+
+        function removeList() {
+            _.unset(vm, 'films')
+            _.unset(vm, 'actors')
         }
 
         function toggleSearch() {
@@ -72,4 +74,3 @@
             vm.searchInRange = !vm.searchInRange;
         }
     }
-})();
