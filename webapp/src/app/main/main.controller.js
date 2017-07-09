@@ -44,6 +44,7 @@ angular
                 main.getFilmsInRange(vm.range1, vm.range2)
                     .then(function (data) {
                         vm.films = [];
+
                         angular.forEach(data, function(val) {
                             vm.films = vm.films.concat(val.filmDTOs);
                         });
@@ -59,8 +60,8 @@ angular
         }
 
         function removeList() {
-            _.unset(vm, 'films')
-            _.unset(vm, 'actors')
+            _.unset(vm, 'films');
+            _.unset(vm, 'actors');
         }
 
         function toggleSearch() {

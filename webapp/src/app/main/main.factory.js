@@ -5,7 +5,7 @@ angular
     .factory('main', function($http) {
 
         function getFilms(title) {
-            return $http.get('http://localhost:8080/api/film/get/title/' + title)
+            return $http.get('http://localhost:8080/api/film/get/film/title/' + title)
                 .then(function (data) {
                     return data.data;
                 });

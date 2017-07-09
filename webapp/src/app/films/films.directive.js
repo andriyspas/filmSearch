@@ -7,7 +7,7 @@
 
     /* @ngInject */
     function films() {
-        var directive = {
+        return {
             templateUrl: 'app/films/films.html',
             restrict: 'AE',
             scope: {
@@ -15,9 +15,8 @@
             },
             link: link
         };
-        return directive;
 
-        function link(scope, element, attrs) {
+        function link(scope) {
             scope.isCollapsed = false;
         }
     }
