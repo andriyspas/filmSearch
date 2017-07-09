@@ -28,7 +28,7 @@ public class FilmController {
 
     @RequestMapping(value = "/get/show/{title}", method = RequestMethod.GET)
     public List<FilmDTO> addOrGetTvShowByTitle(@PathVariable(value = "title") String title)throws Exception{
-        return mapper.mapList(filmService.gettvShowByTitle(title), FilmDTO.class);
+        return mapper.mapList(filmService.getTvShowByTitle(title), FilmDTO.class);
     }
 
     @RequestMapping(value = "/get/film/title/{title}", method = RequestMethod.GET)
