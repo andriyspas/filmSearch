@@ -1,11 +1,12 @@
-'use strict';
+(function () {
+    'use strict';
 
 angular
     .module('webapp')
-    .controller('mainController', mainController);
+    .controller('searchController', searchController);
 
     /** @ngInject */
-    function mainController(main) {
+    function searchController(search) {
         var vm = this;
 
         vm.searchType = true;
@@ -25,12 +26,12 @@ angular
             removeList();
 
             if (vm.searchType) {
-                main.getFilms(vm.searchInput)
+                search.getFilms(vm.searchInput)
                     .then(function (data) {
                         vm.films = data;
                     });
             } else {
-                main.getActors(vm.searchInput)
+                search.getActors(vm.searchInput)
                     .then(function (data) {
                         vm.actors = data;
                     });
@@ -41,7 +42,7 @@ angular
             removeList();
 
             if (vm.range1 && vm.range2) {
-                main.getFilmsInRange(vm.range1, vm.range2)
+                search.getFilmsInRange(vm.range1, vm.range2)
                     .then(function (data) {
                         vm.films = [];
                         angular.forEach(data, function(val) {
@@ -51,7 +52,7 @@ angular
             }
 
             if (vm.year) {
-                main.getFilmsByYear(vm.year)
+                search.getFilmsByYear(vm.year)
                     .then(function (data) {
                         vm.films = data.filmDTOs;
                     });
@@ -74,3 +75,4 @@ angular
             vm.searchInRange = !vm.searchInRange;
         }
     }
+})();
