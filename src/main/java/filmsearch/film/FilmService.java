@@ -46,7 +46,7 @@ public class FilmService {
     }
 
     public Film getByTitle(String title) throws Exception{
-        Film film = filmRepository.findByTitle(title.toLowerCase());
+        Film film = filmRepository.findByTitle(title);
         if(film == null) {
             return addNewFilm("http://www.omdbapi.com/?t=" + title.replace(" ", "+").toLowerCase() + "&y=&plot=short&r=json");
         }
