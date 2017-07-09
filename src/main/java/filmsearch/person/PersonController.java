@@ -37,8 +37,8 @@ public class PersonController {
     }
 
     @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
-    public PersonDTO getByName(@PathVariable(value = "name") String name){
-        return mapper.map(personService.getByName(name), PersonDTO.class);
+    public List<PersonDTO> getByName(@PathVariable(value = "name") String name){
+        return mapper.mapList(personService.getByName(name), PersonDTO.class);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)

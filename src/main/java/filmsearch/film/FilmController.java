@@ -2,6 +2,7 @@ package filmsearch.film;
 
 import com.wordnik.swagger.annotations.Api;
 import filmsearch.mapper.ProjectModelMapper;
+import filmsearch.mapper.dto.PageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,12 @@ public class FilmController {
     @RequestMapping(value = "/get/film/title/{title}", method = RequestMethod.GET)
     public List<FilmDTO> addOrGetFilmByTitle(@PathVariable(value = "title") String title) throws Exception{
         return mapper.mapList(filmService.getFilmByTitle(title), FilmDTO.class);
+    }
+
+    @RequestMapping(value = "/get/film/genre", method = RequestMethod.POST)
+    public PageDto<FilmDTO> getByGenre(@RequestBody FilmGenreSearchDTO filmGenreSearchDTO) throws Exception{
+        return mapper.mapPage(filmService.getByGenre(filmGenreSearchDTO.getGenreName(),
+                filmGenreSearchDTO.getPage(), filmGenreSearchDTO.getSize()), FilmDTO.class);
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

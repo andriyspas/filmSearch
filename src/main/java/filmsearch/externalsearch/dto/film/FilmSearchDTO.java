@@ -1,4 +1,4 @@
-package filmsearch.externalsearch;
+package filmsearch.externalsearch.dto.film;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
