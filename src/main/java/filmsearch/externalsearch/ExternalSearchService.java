@@ -1,6 +1,7 @@
 package filmsearch.externalsearch;
 
 import filmsearch.film.Film;
+import filmsearch.genre.Genre;
 import filmsearch.mapper.ProjectModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,13 +22,21 @@ public class ExternalSearchService {
     @Value("${themoviedb.search.tvShow.endpoint}")
     private String tvSearchUrl;
 
+    @Value("${themoviedb.get.genres.endpoint}")
+    private String genresSearchUrl;
+
     public List<Film> getFilmsByTitle(String title){
-        ResponseEntity<SearchResultDTO> responseEntity = restTemplate.getForEntity(filmSearchUrl + title, SearchResultDTO.class);
+        ResponseEntity<FilmSearchResultDTO> responseEntity = restTemplate.getForEntity(filmSearchUrl + title, FilmSearchResultDTO.class);
         return mapper.mapFilmList(responseEntity.getBody().getResults());
     }
 
     public List<Film> getTvShowByTitle(String title){
-        ResponseEntity<SearchResultDTO> responseEntity = restTemplate.getForEntity(tvSearchUrl + title, SearchResultDTO.class);
+        ResponseEntity<FilmSearchResultDTO> responseEntity = restTemplate.getForEntity(tvSearchUrl + title, FilmSearchResultDTO.class);
         return mapper.mapFilmList(responseEntity.getBody().getResults());
+    }
+
+    public List<Genre> getGenres(){
+        ResponseEntity<GenreSearchResultDto> responseEntity = restTemplate.getForEntity(genresSearchUrl, GenreSearchResultDto.class);
+        return mapper.mapList(responseEntity.getBody().getGenres(), Genre.class);
     }
 }

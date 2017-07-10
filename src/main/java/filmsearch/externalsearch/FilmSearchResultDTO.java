@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SearchResultDTO {
+public class FilmSearchResultDTO {
 
     @JsonProperty("results")
     private List<FilmSearchDTO> results;

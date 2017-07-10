@@ -1,5 +1,6 @@
 package filmsearch.film;
 
+import filmsearch.genre.Genre;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -59,7 +60,7 @@ public class FilmDTO {
 
     @Getter
     @Setter
-    private List<String> genres;
+    private List<Genre> genres;
 
     @Getter
     @Setter
