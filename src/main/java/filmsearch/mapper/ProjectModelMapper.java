@@ -4,8 +4,10 @@ import filmsearch.externalsearch.FilmSearchDTO;
 import filmsearch.film.Film;
 import filmsearch.genre.Genre;
 import filmsearch.genre.GenreRepository;
+import filmsearch.mapper.dto.PageDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -21,6 +23,13 @@ public class ProjectModelMapper extends ModelMapper {
         return sourceList.stream()
                 .map(e -> map(e, itemClass))
                 .collect(Collectors.toList());
+    }
+
+    @SuppressWarnings("unchecked")
+    public <DTO> PageDto<DTO> mapPage(Page<?> page, Class<DTO> itemClass) {
+        PageDto pageDto = map(page, PageDto.class);
+        pageDto.setContent(mapList(page.getContent(), itemClass));
+        return pageDto;
     }
 
     public List<Film> mapFilmList(List<FilmSearchDTO> filmSearchDTOs){
