@@ -1,10 +1,12 @@
 package filmsearch.mapper;
 
-import filmsearch.externalsearch.FilmSearchDTO;
+import filmsearch.externalsearch.dto.actor.PersonSearchResultDTO;
+import filmsearch.externalsearch.dto.film.FilmSearchDTO;
 import filmsearch.film.Film;
 import filmsearch.genre.Genre;
 import filmsearch.genre.GenreRepository;
 import filmsearch.mapper.dto.PageDto;
+import filmsearch.person.Person;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,6 +46,16 @@ public class ProjectModelMapper extends ModelMapper {
             index++;
         }
         return films;
+    }
+
+    public List<Person> mapPersonList(PersonSearchResultDTO personSearchResultDTO){
+        List<Person> personList = new ArrayList<>();
+        personSearchResultDTO.getResults().forEach(personSearchDTO -> {
+            Person person = map(personSearchDTO, Person.class);
+            person.setFilmList(mapFilmList(personSearchDTO.getFilmList()));
+            personList.add(person);
+        });
+        return personList;
     }
 
     private void setGenres(Film film, FilmSearchDTO filmSearchDTO){

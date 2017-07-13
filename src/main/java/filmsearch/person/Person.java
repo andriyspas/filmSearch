@@ -27,15 +27,15 @@ public class Person {
     @Getter
     @Setter
     @Column
-    private String occupation;
+    private double popularity;
+    @Getter
+    @Setter
+    @Column
+    private int theMovieDbId;
     @Getter
     @Setter
     @Column(length = 3000)
-    private URL photo;
-    @Getter
-    @Setter
-    @Column(length = 2000)
-    private String bio;
+    private String photo;
     @ManyToMany(cascade = CascadeType.ALL)
     @Getter
     @Setter
