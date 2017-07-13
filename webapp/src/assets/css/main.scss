@@ -1,12 +1,10 @@
-@import "components";
+@import "vendor/vendor";
+@import "partials/gutters";
+@import "modules/modules";
 
-.logo {
-  width: 120px;
-  display: block;
-
-  img {
-    width: 100%;
-  }
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 .search-input {
@@ -38,4 +36,51 @@
 
 .year {
   margin: 0 30px;
+}
+
+.panel {
+  background: #f5f5f5;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+a {
+  color: #000;
+  position: relative;
+  display: block;
+  
+  &:hover {
+    color: #000;
+    text-decoration: none;
+
+    & > .more {
+      opacity: 1;
+    }
+  }
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+.more {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background: rgba(0,0,0,.7);
+  transition: opacity .2s;
+  border-radius: 4px;
+
+  span {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    display: block;
+  }
 }

@@ -8,6 +8,8 @@ import filmsearch.person.PersonRepository;
 import filmsearch.person.PersonService;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -52,6 +54,10 @@ public class FilmService {
             films = addNewTvShows(title);
         }
         return films;
+    }
+
+    public Page<Film> getByGenre(String genreName, int page, int size){
+        return filmRepository.findByGenresName(genreName, new PageRequest(page, size));
     }
 
     public void deleteById(String id){

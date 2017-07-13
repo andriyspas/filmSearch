@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
 
 </head>
@@ -14,16 +15,21 @@
 
     <header ng-include="'app/header/header.html'"></header>
 
-    <div ui-view></div>
+    <section ui-view>
 
+    </section>
 
 
     <script src="assets/js/main.js"></script>
 
     <script src="app/index.module.js"></script>
-    <script src="app/search/search.factory.js"></script>
+    <script src="app/search.factory.js"></script>
     <script src="app/search/search.controller.js"></script>
     <script src="app/films/films.directive.js"></script>
+
+    <script src="app/modal/modal.directive.js"></script>
+
+
     <script src="app/actors/actors.directive.js"></script>
     <script src="app/actors/actorFilms.controller.js"></script>
     <script src="app/index.route.js"></script>

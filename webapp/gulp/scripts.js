@@ -6,6 +6,7 @@ var concat = require('gulp-concat');
 gulp.task('scripts', function() {
     return gulp.src([
         './bower_components/jquery/dist/jquery.js',
+        './bower_components/bootstrap/dist/js/bootstrap.js',
         './bower_components/angular/angular.js',
         './bower_components/angular-animate/angular-animate.js',
         './bower_components/angular-cookies/angular-cookies.js',

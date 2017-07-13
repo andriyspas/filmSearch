@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Stas on 25.11.2015.
  */
 public interface PersonRepository extends CrudRepository<Person, String> {
-    Person findByName(String name);
+    List<Person> findByNameContaining(String name);
 
     @Override
     List<Person> findAll();
