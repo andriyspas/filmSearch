@@ -1,0 +1,79 @@
+.search {
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  height: 300px;
+  background-color: #f5f5f5;
+  position: relative;
+
+  @media(min-width: 768px) {
+    height: 400px;
+  }
+
+  .input-group-btn {
+    height: 100%;
+  }
+
+  .input-group {
+    border-bottom: 2px solid #ddd;
+    background: transparent;
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+
+    input {
+      font-size: 24px;
+      font-weight: 100;
+      padding: 6px 0;
+      height: 100%;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    button {
+      height: 100%;
+      background: url('../../assets/img/magnifying-glass.svg') no-repeat center;
+    }
+
+    .search-range input {
+      width: 45%;
+      float: left;
+    }
+  }
+
+  .text-center {
+    padding-top: 40px;
+
+    h2:nth-of-type(1) {
+      font-size: 40px;
+
+      @media(min-width: 768px) {
+        font-size: 52px;
+      }
+    }
+
+    h2:nth-of-type(2) {
+      font-size: 18px;
+      font-weight: 100;
+
+      @media(min-width: 768px) {
+        font-size: 28px;
+      }
+    }
+  }
+
+  &-form {
+    position: absolute;
+    bottom: 40px;
+    right: 15px;
+    left: 15px;
+    transform: scale3d(0.5,0.5,1);
+    transition: all 0.5s;
+    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+
+    &.open {
+      transform: translate3d(0, -50%, 0);
+      margin: auto;
+    }
+  }
+}
