@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Stas on 25.11.2015.
  */
-public interface GenreRepository extends CrudRepository<Genre, String> {
+public interface GenreRepository extends CrudRepository<Genre, Long> {
     Genre findByName(String name);
 
     @Override

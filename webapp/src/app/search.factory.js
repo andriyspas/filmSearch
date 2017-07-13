@@ -25,9 +25,9 @@ angular
                     year: year
                 }
             })
-                .then(function (data) {
-                    return data.data;
-                });
+            .then(function (data) {
+                return data.data;
+            });
         }
 
         function getFilmsInRange(from, to) {
@@ -37,16 +37,21 @@ angular
                     to: to
                 }
             })
-                .then(function (data) {
-                    return data.data;
-                });
+            .then(function (data) {
+                return data.data;
+            });
+        }
+
+        function getGenres() {
+            return $http.get('http://localhost:8080/api/genre/all')
         }
 
         return {
             getFilms: getFilms,
             getActors: getActors,
             getFilmsByYear: getFilmsByYear,
-            getFilmsInRange: getFilmsInRange
+            getFilmsInRange: getFilmsInRange,
+            getGenres: getGenres
         };
     });
 })();

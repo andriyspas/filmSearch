@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class Genre {
 
     @Getter
+    @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NonNull
     @Getter

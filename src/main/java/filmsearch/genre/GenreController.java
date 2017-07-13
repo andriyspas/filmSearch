@@ -21,14 +21,9 @@ public class GenreController {
     @Autowired
     private GenreService genreService;
 
-    @Autowired
-    private ProjectModelMapper mapper;
-
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<GenreDTO> getAllGenres(){
-        List<GenreDTO> genreDTOList = new ArrayList<>();
-        genreService.getAllGenres().forEach(genre -> genreDTOList.add(mapper.map(genre, GenreDTO.class)));
-        return genreDTOList;
+    public List<Genre> getAllGenres(){
+        return genreService.getAllGenres();
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
