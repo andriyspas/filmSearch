@@ -13,6 +13,8 @@ angular
         vm.searchByYear = false;
         vm.searchInRange = false;
 
+        vm.isOpen = false;
+
         vm.getListData = getListData;
         vm.getListDataByYear = getListDataByYear;
         vm.toggleSearch = toggleSearch;
@@ -29,6 +31,8 @@ angular
                 search.getFilms(vm.searchInput)
                     .then(function (data) {
                         vm.films = data;
+
+                        vm.isOpen = false;
                     });
             } else {
                 search.getActors(vm.searchInput)
@@ -36,6 +40,19 @@ angular
                         vm.actors = data;
                     });
             }
+
+            // $scope.loading = false;
+            //
+            // $scope.endLoading = function(){
+            //     $scope.loading = false;
+            // }
+            //
+            // $scope.search = function() {
+            //     $scope.loading = true;
+            //
+            //     $timeout($scope.endLoading, 1000);
+            // }
+
         }
 
         function getListDataByYear() {
@@ -75,5 +92,14 @@ angular
             vm.range2 = '';
             vm.searchInRange = !vm.searchInRange;
         }
+
+        //TODO
+        if (vm.genre) {
+            search.getGenres()
+                .then(function (data) {
+                    vm.gerneName = data.data;
+                });
+        }
+
     }
 })();
