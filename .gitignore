@@ -1,4 +1,13 @@
 .idea/
 target/
 FilmSearch.iml
-
+webapp/node_modules/
+webapp/bower_components/
+webapp/.sass-cache/
+webapp/.idea/
+webapp/.tmp/
+webapp/.DS_Store
+webapp/webapp/gulp/.DS_Store
+webapp/webapp/package-lock.json
+webapp/dist
+webapp/package-lock.json
