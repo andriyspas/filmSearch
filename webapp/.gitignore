@@ -7,3 +7,4 @@ bower_components/
 webapp/gulp/.DS_Store
 webapp/package-lock.json
 dist
+package-lock.json
