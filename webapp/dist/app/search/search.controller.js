@@ -10,31 +10,32 @@ angular
 
         var vm = this;
 
-
         vm.searchType = searchType;
         vm.searchBy = searchBy;
         vm.searchByYear = searchByYear;
 
-        vm.selectedSearchType = true;
-        vm.selectedSearchBy = true;
-        vm.selectedSearchByYear = true;
-
+        resetFilters();
 
         vm.isOpen = false;
 
         vm.getListData = getListData;
         vm.getListDataByYear = getListDataByYear;
         vm.toggleSearch = toggleSearch;
-        vm.toggleInRange = toggleInRange;
-        
+        vm.resetFilters = resetFilters;
+
         vm.resetForm = resetForm;
-        
+
         function resetForm() {
             vm.searchInput = '';
-            vm.testForm.$setPristine();
-
+            vm.searchForm.$setPristine();
             vm.isOpen = false;
             vm.films = [];
+        }
+
+        function resetFilters() {
+            vm.selectedSearchType = true;
+            vm.selectedSearchBy = true;
+            vm.selectedSearchByYear = true;
         }
 
         function getListData() {
@@ -48,40 +49,27 @@ angular
                 search.getFilms(vm.searchInput)
                     .then(function (data) {
                         vm.films = data.data;
-                        vm.isOpen = false;
                     });
             } else {
                 search.getActors(vm.searchInput)
                     .then(function (data) {
-                        console.log(data)
-
                         vm.actors = data;
                     });
             }
-
-            // $scope.loading = false;
-            //
-            // $scope.endLoading = function(){
-            //     $scope.loading = false;
-            // }
-            //
-            // $scope.search = function() {
-            //     $scope.loading = true;
-            //
-            //     $timeout($scope.endLoading, 1000);
-            // }
-
         }
 
         function getListDataByYear() {
             removeList();
 
-            if (vm.range1 && vm.range2) {
-                search.getFilmsInRange(vm.range1, vm.range2)
+            if (vm.rangeFrom && vm.rangeTo) {
+                search.getFilmsInRange(vm.rangeFrom, vm.rangeTo)
                     .then(function (data) {
                         vm.films = [];
+                        console.log(data);
                         angular.forEach(data, function(val) {
-                            vm.films = vm.films.concat(val.filmDTOs);
+                            if(val.filmDTOs){
+                              vm.films = vm.films.concat(val.filmDTOs);
+                            }
                         });
                     });
             }
@@ -95,19 +83,12 @@ angular
         }
 
         function removeList() {
-            _.unset(vm, 'films')
-            _.unset(vm, 'actors')
+            _.unset(vm, 'films');
+            _.unset(vm, 'actors');
         }
 
         function toggleSearch() {
             vm.searchByYear = !vm.searchByYear;
-        }
-
-        function toggleInRange() {
-            vm.year = '';
-            vm.range1 = '';
-            vm.range2 = '';
-            vm.searchInRange = !vm.searchInRange;
         }
 
         //TODO
@@ -118,5 +99,32 @@ angular
                 });
         }
 
+        search.getMostPopularFilms()
+            .then(function (data) {
+                vm.popularFilms = data.data;
+                sliderMostPopularFilms();
+            });
+
+        function sliderMostPopularFilms() {
+            vm.slider = new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: 2500,
+                autoplayDisableOnInteraction: false,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                slidesPerView: 4,
+                spaceBetween: 30,
+                breakpoints: {
+                    1023: {
+                        slidesPerView: 2,
+                        spaceBetween: 40
+                    },
+                    767: {
+                        slidesPerView: 1,
+                        spaceBetween: 30
+                    }
+                }
+            });
+        }
     }
 })();

@@ -1,0 +1,59 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+
+        <div class="row">
+
+
+            <div class="col-sm-6 col-md-4 col-lg-3 m-b-md">
+                <img
+                    ng-src="{{ (actor.photo === null) ? '../../assets/img/no-room.jpg' : actor.photo }}"
+                    class="img-responsive img-thumbnail actor-photo">
+            </div>
+
+            <div class="col-sm-6 col-md-8 col-lg-9 clearfix m-b-md">
+
+                <div class="row">
+
+                    <div class="col-xs-6">
+
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <span>{{ actor.name }}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-6">
+                        <button
+                            class="btn btn-default pull-right"
+                            ng-click="open()">
+                            Films chart
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div
+                class="col-sm-6 col-md-4 col-lg-3 panel-group panel-films"
+                ng-repeat="film in actor.filmList track by $index">
+
+                <films
+                    film="film"
+                    index="film.id"
+                    ng-click="filmData(film)">
+                </films>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

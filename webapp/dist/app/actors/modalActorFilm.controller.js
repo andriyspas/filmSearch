@@ -3,21 +3,19 @@
 
     angular
         .module('webapp')
-        .controller('actorFilms', actorFilms);
+        .controller('modalActorFilm', modalActorFilm);
 
-    /* @ngInject */
-    function actorFilms($modalInstance, films) {
+    /** @ngInject */
+    function modalActorFilm($modalInstance, films) {
         var vm = this;
 
         vm.years = [];
 
         vm.ratings = [];
 
-        console.log(films)
-
-        angular.forEach(films, function (val) {
-            if(vm.years.indexOf(val.year) !== -1) {
-                vm.ratings[vm.years.indexOf(val.year)] = (vm.ratings[vm.years.indexOf(val.year)] + val.imdbRating)/2;
+        _.forEach(films, function (val) {
+            if (vm.years.indexOf(val.year) !== -1) {
+                vm.ratings[vm.years.indexOf(val.year)] = (vm.ratings[vm.years.indexOf(val.year)] + val.imdbRating) / 2;
             } else {
                 vm.years.push(val.year);
                 vm.ratings.push(val.imdbRating);

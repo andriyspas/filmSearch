@@ -5,7 +5,7 @@
         .module('webapp')
         .directive('actors', actors);
 
-    /* @ngInject */
+    /** @ngInject */
     function actors($modal) {
         return {
             templateUrl: 'app/actors/actors.html',
@@ -17,12 +17,10 @@
         };
 
         function link(scope) {
-            scope.isCollapsed = false;
-
             scope.open = function () {
                 $modal.open({
-                    templateUrl: 'app/actors/actorFilms.html',
-                    controller: 'actorFilms',
+                    templateUrl: 'app/actors/modalActorFilm.html',
+                    controller: 'modalActorFilm',
                     controllerAs: 'films',
                     resolve: {
                         films: function () {
@@ -35,4 +33,3 @@
     }
 
 })();
-
