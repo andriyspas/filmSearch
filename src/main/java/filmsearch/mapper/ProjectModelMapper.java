@@ -40,8 +40,7 @@ public class ProjectModelMapper extends ModelMapper {
         for(Film film : films) {
             film.setYear(Integer.parseInt(film.getReleased() != null && film.getReleased().length() > 0 ? film.getReleased().substring(0,4) : "0"));
             film.setPoster(film.getPoster() != null ?
-                    "https://image.tmdb.org/t/p/w500" + film.getPoster() :
-                    "https://vignette1.wikia.nocookie.net/theannoyingroleplayers/images/4/47/Placeholder.png/revision/latest?cb=20140715205720");
+                    "https://image.tmdb.org/t/p/w1000" + film.getPoster() : null);
             setGenres(film, filmSearchDTOs.get(index));
             index++;
         }

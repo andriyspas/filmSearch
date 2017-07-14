@@ -11,7 +11,8 @@
             templateUrl: 'app/films/films.html',
             restrict: 'AE',
             scope: {
-                film: '='
+                film: '=',
+                index: '='
             },
             link: link
         };

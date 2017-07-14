@@ -1,0 +1,130 @@
+<div
+    class="container-fluid search"
+    ng-controller="searchController">
+
+    <div class="text-center">
+        <p>Lorem ipsum</p>
+        <p>is simply dummy text of the printing and typesetting industry</p>
+    </div>
+
+        <form
+            ng-class="{ 'open': isOpen }"
+            ng-hide="search.searchByYear"
+            ng-submit="search.getListData()">
+
+            <div class="input-group">
+                <input
+                    class="form-control"
+                    type="text"
+                    ng-model="search.searchInput"
+                    ng-click="isOpen = true">
+
+                <span class="input-group-btn">
+                    <button
+                        type="submit"
+                        class="btn btn-link"
+
+                        style="background: url('../../assets/img/magnifying-glass.svg')">
+                    </button>
+                </span>
+            </div>
+        </form>
+
+        <!--<div ng-show="search.searchByYear">-->
+            <!--<div class="form-inline">-->
+                <!--<button-->
+                    <!--class="btn btn-default"-->
+                    <!--type="button"-->
+                    <!--ng-click="search.toggleInRange()"-->
+                    <!--ng-bind="search.searchInRange ? 'by year' : 'in range'">-->
+                <!--</button>-->
+
+                <!--<div class="year" ng-hide="search.searchInRange">-->
+                    <!--<label class="control-label">Year:</label>-->
+                    <!--<input class="form-control" type="text" ng-model="search.year">-->
+                <!--</div>-->
+
+                <!--<div class="range2" ng-show="search.searchInRange">-->
+                    <!--<label class="control-label">To:</label>-->
+                    <!--<input class="form-control" type="text" ng-model="search.range2">-->
+                <!--</div>-->
+
+                <!--<div class="range1" ng-show="search.searchInRange">-->
+                    <!--<label class="control-label">From:</label>-->
+                    <!--<input class="form-control" type="text" ng-model="search.range1">-->
+                <!--</div>-->
+
+                <!--<div class="search-button">-->
+                    <!--<button class="btn btn-default" type="button" ng-click="search.getListDataByYear()">-->
+                        <!--<i class="glyphicon glyphicon-search"></i>-->
+                        <!--Search-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+
+    <!--<div class="col-xs-1">-->
+        <!--<button-->
+            <!--type="button"-->
+            <!--class="btn btn-default"-->
+            <!--ng-click="search.toggleSearch()"-->
+            <!--ng-bind="search.searchByYear ? 'by name' : 'by year'">-->
+        <!--</button>-->
+    <!--</div>-->
+
+    <!--<div class="col-xs-2">-->
+        <!--<input-->
+            <!--bs-switch-->
+            <!--ng-model="search.searchType"-->
+            <!--type="checkbox"-->
+            <!--switch-on-text="Films"-->
+            <!--switch-off-text="Actors"-->
+            <!--switch-on-color="primary"-->
+            <!--switch-off-color="success">-->
+    <!--</div>-->
+
+    <!--<div ng-repeat="item in search.gerneName track by $index">-->
+        <!--<button>{{item.name}}</button>-->
+    <!--</div>-->
+
+</div>
+
+<div class="container p-t-md">
+
+    <div class="row clearfix">
+
+        <div
+            class="col-sm-6 col-md-4 col-lg-3 panel-group"
+            ng-repeat="item in search.films track by $index"
+            ng-if="search.searchType && search.films && !search.year && !search.range1">
+
+            <films
+                film="item"
+                index="item.id">
+            </films>
+
+            <modal
+                handler="index"
+                film="item"
+                index="item.id">
+            </modal>
+
+        </div>
+
+        <div
+            ng-repeat="item in search.films track by $index"
+            ng-if="search.films && (search.year || search.range1)">
+
+            <films film="item"></films>
+
+        </div>
+
+        <div ng-if="!search.searchType && search.actors">
+            <actors actor="search.actors"></actors>
+        </div>
+
+    </div>
+</div>
+

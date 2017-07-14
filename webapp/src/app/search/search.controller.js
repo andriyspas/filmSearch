@@ -1,16 +1,19 @@
-'use strict';
+(function () {
+    'use strict';
 
 angular
     .module('webapp')
-    .controller('mainController', mainController);
+    .controller('searchController', searchController);
 
     /** @ngInject */
-    function mainController(main) {
+    function searchController(search) {
         var vm = this;
 
         vm.searchType = true;
         vm.searchByYear = false;
         vm.searchInRange = false;
+
+        vm.isOpen = false;
 
         vm.getListData = getListData;
         vm.getListDataByYear = getListDataByYear;
@@ -25,23 +28,38 @@ angular
             removeList();
 
             if (vm.searchType) {
-                main.getFilms(vm.searchInput)
+                search.getFilms(vm.searchInput)
                     .then(function (data) {
                         vm.films = data;
+
+                        vm.isOpen = false;
                     });
             } else {
-                main.getActors(vm.searchInput)
+                search.getActors(vm.searchInput)
                     .then(function (data) {
                         vm.actors = data;
                     });
             }
+
+            // $scope.loading = false;
+            //
+            // $scope.endLoading = function(){
+            //     $scope.loading = false;
+            // }
+            //
+            // $scope.search = function() {
+            //     $scope.loading = true;
+            //
+            //     $timeout($scope.endLoading, 1000);
+            // }
+
         }
 
         function getListDataByYear() {
             removeList();
 
             if (vm.range1 && vm.range2) {
-                main.getFilmsInRange(vm.range1, vm.range2)
+                search.getFilmsInRange(vm.range1, vm.range2)
                     .then(function (data) {
                         vm.films = [];
 
@@ -52,7 +70,7 @@ angular
             }
 
             if (vm.year) {
-                main.getFilmsByYear(vm.year)
+                search.getFilmsByYear(vm.year)
                     .then(function (data) {
                         vm.films = data.filmDTOs;
                     });
@@ -74,4 +92,14 @@ angular
             vm.range2 = '';
             vm.searchInRange = !vm.searchInRange;
         }
+
+        //TODO
+        if (vm.genre) {
+            search.getGenres()
+                .then(function (data) {
+                    vm.gerneName = data.data;
+                });
+        }
+
     }
+})();

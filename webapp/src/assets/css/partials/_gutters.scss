@@ -1,0 +1,31 @@
+.m-b {
+  margin-bottom: 0;
+
+  &-xs {
+    margin-bottom: 5px;
+  }
+}
+
+.p-0 {
+  padding: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.p-r {
+  padding-right: 0;
+}
+
+.p-l {
+  padding-left: 0;
+}
+
+.p-t {
+  padding-top: 0;
+
+  &-md {
+    padding-top: 15px;
+  }
+}
