@@ -1,8 +1,9 @@
-'use strict';
+(function () {
+    'use strict';
 
 angular
     .module('webapp')
-    .factory('main', function($http) {
+    .factory('search', function($http) {
 
         function getFilms(title) {
             return $http.get('http://localhost:8080/api/film/get/title/' + title)
@@ -48,3 +49,4 @@ angular
             getFilmsInRange: getFilmsInRange
         };
     });
+})();

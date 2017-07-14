@@ -7,10 +7,12 @@
             'ngCookies',
             'ngTouch',
             'ngSanitize',
+
+            'chart.js',
+
             'ui.router',
             'ui.bootstrap',
-            'frapontillo.bootstrap-switch',
-            'chart.js'
+            'frapontillo.bootstrap-switch'
         ]);
 
 })();
