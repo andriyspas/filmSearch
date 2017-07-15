@@ -11,6 +11,8 @@ gulp.task('scripts', function() {
         // './bower_components/bootstrap-select/dist/js/bootstrap-select.js',
 
 
+        './node_modules/swiper/dist/js/swiper.js',
+
 
         './bower_components/angular-animate/angular-animate.js',
         './bower_components/angular-cookies/angular-cookies.js',

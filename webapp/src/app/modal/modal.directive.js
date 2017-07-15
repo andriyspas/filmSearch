@@ -8,13 +8,9 @@
                 restrict: 'EA',
                 scope: {
                     handler: '=handler',
-                    film: '=',
-                    index: '='
+                    film: '='
                 },
-                templateUrl: 'app/modal/modal.html',
-                controller: function ($scope) {
-                    $scope.handler = $scope.index;
-                }
+                templateUrl: 'app/modal/modal.html'
             };
         });
 })();

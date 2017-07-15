@@ -11,6 +11,7 @@
             'chart.js',
 
             'ui.router',
+
             'ui.bootstrap',
             'frapontillo.bootstrap-switch'
         ]);
