@@ -53,6 +53,8 @@ public class ProjectModelMapper extends ModelMapper {
             Person person = map(personSearchDTO, Person.class);
             person.setFilmList(mapFilmList(personSearchDTO.getFilmList() == null ?
                 new ArrayList<>() : personSearchDTO.getFilmList()));
+            person.setPhoto(person.getPhoto() != null ? "https://image.tmdb.org/t/p/w1000" + person.getPhoto() :
+                                                null);
             personList.add(person);
         });
         return personList;
