@@ -10,10 +10,15 @@ angular
 
         var vm = this;
 
-
         vm.searchType = searchType;
         vm.searchBy = searchBy;
         vm.searchByYear = searchByYear;
+
+        vm.selectedFilm = '';
+        vm.selcF = function (elem) {
+            vm.selectedFilm = elem;
+        };
+
 
         resetFilters();
 
@@ -144,5 +149,32 @@ angular
                 });
         }
 
+        search.getMostPopularFilms()
+            .then(function (data) {
+                vm.popularFilms = data.data;
+                sliderMostPopularFilms();
+            });
+
+        function sliderMostPopularFilms() {
+            vm.slider = new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: 2500,
+                autoplayDisableOnInteraction: false,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                slidesPerView: 4,
+                spaceBetween: 30,
+                breakpoints: {
+                    1023: {
+                        slidesPerView: 2,
+                        spaceBetween: 40
+                    },
+                    767: {
+                        slidesPerView: 1,
+                        spaceBetween: 30
+                    }
+                }
+            })
+        }
     }
 })();

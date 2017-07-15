@@ -16,7 +16,7 @@
 
         <div class="input-group">
             <input
-                placeholder=""
+                placeholder="Search"
                 name="name"
                 class="form-control"
                 type="text"
@@ -27,8 +27,7 @@
             <span class="input-group-btn">
                 <button
                     type="submit"
-                    class="btn btn-link"
-                    style="background: url('../../assets/img/magnifying-glass.svg')">
+                    class="btn btn-link">
                 </button>
             </span>
         </div>
@@ -82,8 +81,7 @@
         <span class="input-group-btn">
             <button
                 type="submit"
-                class="btn btn-link"
-                style="background: url('../../assets/img/magnifying-glass.svg')">
+                class="btn btn-link">
             </button>
         </span>
 
@@ -128,10 +126,10 @@
             </select>
         </div>
 
-        <div class="col-sm-6 col-md-3">
+        <div class="col-xs-6 col-sm-4 col-md-2 pull-right">
             <button
                 ng-click="search.resetFilters()"
-                class="btn btn-default btn-block m-b-md">
+                class="btn btn-default btn-block m-b-md btn-danger">
                 Reset filters
             </button>
         </div>
@@ -152,18 +150,13 @@
         <div
             class="col-sm-6 col-md-4 col-lg-3 panel-group panel-films"
             ng-repeat="film in search.films track by $index"
-            ng-if="search.selectedSearchType && search.films && !search.year && !search.range1">
+            ng-show="search.selectedSearchType && search.films && !search.year && !search.range1">
 
             <films
                 film="film"
-                index="film.id">
+                index="film.id"
+                ng-click="search.selcF(film)">
             </films>
-
-            <modal
-                handler="index"
-                film="film"
-                index="film.id">
-            </modal>
 
         </div>
 
@@ -188,3 +181,47 @@
     </div>
 </div>
 
+
+<div
+    class="container p-t-md films"
+    ng-hide="search.films.length || search.actors.length">
+
+    <div class="row">
+        <h5 class="col-sm-4 m-b-md">Most popular fimls:</h5>
+    </div>
+
+    <div class="row">
+
+        <div class="swiper-container">
+
+            <div class="swiper-wrapper">
+                <div
+                    class="swiper-slide panel-group panel-films"
+                    ng-repeat="film in search.popularFilms">
+
+                    <films
+                        film="film"
+                        index="film.id">
+                    </films>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+    </div>
+
+</div>
+
+
+<modal
+    ng-if="search.selectedFilm"
+    handler="search.selectedFilm"
+    selected-film="search.selectedFilm">
+</modal>
+
+<pre>{{search.selectedFilm}}</pre>
