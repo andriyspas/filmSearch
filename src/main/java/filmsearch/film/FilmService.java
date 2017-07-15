@@ -56,6 +56,10 @@ public class FilmService {
         return films;
     }
 
+    public List<Film> getPopular(){
+        return searchService.getPopular();
+    }
+
     public Page<Film> getByGenre(String genreName, int page, int size){
         return filmRepository.findByGenresName(genreName, new PageRequest(page, size));
     }
