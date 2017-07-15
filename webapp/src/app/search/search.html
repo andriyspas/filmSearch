@@ -155,7 +155,7 @@
             <films
                 film="film"
                 index="film.id"
-                ng-click="search.selcF(film)">
+                ng-click="search.filmData(film)">
             </films>
 
         </div>
@@ -217,11 +217,7 @@
 
 </div>
 
-
 <modal
-    ng-if="search.selectedFilm"
-    handler="search.selectedFilm"
-    selected-film="search.selectedFilm">
+    handler="search.film.id"
+    film="search.film">
 </modal>
-
-<pre>{{search.selectedFilm}}</pre>

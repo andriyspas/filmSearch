@@ -14,9 +14,9 @@ angular
         vm.searchBy = searchBy;
         vm.searchByYear = searchByYear;
 
-        vm.selectedFilm = '';
-        vm.selcF = function (elem) {
-            vm.selectedFilm = elem;
+        vm.film = '';
+        vm.filmData = function (data) {
+            vm.film = data;
         };
 
 
