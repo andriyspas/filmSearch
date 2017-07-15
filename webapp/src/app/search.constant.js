@@ -16,21 +16,21 @@
         ])
         .constant('searchBy', [
             {
-                value: false,
-                name: 'Search by year'
-            },
-            {
                 value: true,
                 name: 'Search by name'
+            },
+            {
+                value: false,
+                name: 'Search by year'
             }
         ])
         .constant('searchByYear', [
             {
-                value: false,
+                value: true,
                 name: 'Search by year'
             },
             {
-                value: true,
+                value: false,
                 name: 'Search in range'
             }
         ]);

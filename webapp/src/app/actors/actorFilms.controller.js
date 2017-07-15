@@ -13,8 +13,6 @@
 
         vm.ratings = [];
 
-        console.log(films)
-
         angular.forEach(films, function (val) {
             if(vm.years.indexOf(val.year) !== -1) {
                 vm.ratings[vm.years.indexOf(val.year)] = (vm.ratings[vm.years.indexOf(val.year)] + val.imdbRating)/2;

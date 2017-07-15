@@ -38,7 +38,7 @@ public class ProjectModelMapper extends ModelMapper {
         List<Film> films = mapList(filmSearchDTOs, Film.class);
         int index = 0;
         for(Film film : films) {
-            film.setYear(Integer.parseInt(film.getReleased().length() > 0 ? film.getReleased().substring(0,4) : "0"));
+            film.setYear(Integer.parseInt(film.getReleased() != null && film.getReleased().length() > 0 ? film.getReleased().substring(0,4) : "0"));
             film.setPoster(film.getPoster() != null ?
                     "https://image.tmdb.org/t/p/w1000" + film.getPoster() : null);
             setGenres(film, filmSearchDTOs.get(index));
@@ -51,7 +51,8 @@ public class ProjectModelMapper extends ModelMapper {
         List<Person> personList = new ArrayList<>();
         personSearchResultDTO.getResults().forEach(personSearchDTO -> {
             Person person = map(personSearchDTO, Person.class);
-            person.setFilmList(mapFilmList(personSearchDTO.getFilmList()));
+            person.setFilmList(mapFilmList(personSearchDTO.getFilmList() == null ?
+                new ArrayList<>() : personSearchDTO.getFilmList()));
             personList.add(person);
         });
         return personList;
