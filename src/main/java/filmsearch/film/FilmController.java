@@ -37,6 +37,11 @@ public class FilmController {
         return mapper.mapList(filmService.getFilmByTitle(title), FilmDTO.class);
     }
 
+    @RequestMapping(value = "/get/popular", method = RequestMethod.GET)
+    public List<FilmDTO> getPopular(){
+        return mapper.mapList(filmService.getPopular(), FilmDTO.class);
+    }
+
     @RequestMapping(value = "/get/film/genre", method = RequestMethod.POST)
     public PageDto<FilmDTO> getByGenre(@RequestBody FilmGenreSearchDTO filmGenreSearchDTO) throws Exception{
         return mapper.mapPage(filmService.getByGenre(filmGenreSearchDTO.getGenreName(),

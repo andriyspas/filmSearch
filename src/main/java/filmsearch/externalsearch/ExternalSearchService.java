@@ -23,6 +23,9 @@ public class ExternalSearchService {
     @Value("${themoviedb.search.film.endpoint}")
     private String filmSearchUrl;
 
+    @Value("${themoviedb.search.popular}")
+    private String filmPopularSearchUrl;
+
     @Value("${themoviedb.search.tvShow.endpoint}")
     private String tvSearchUrl;
 
@@ -34,6 +37,11 @@ public class ExternalSearchService {
 
     public List<Film> getFilmsByTitle(String title){
         ResponseEntity<FilmSearchResultDTO> responseEntity = restTemplate.getForEntity(filmSearchUrl + title, FilmSearchResultDTO.class);
+        return mapper.mapFilmList(responseEntity.getBody().getResults());
+    }
+
+    public List<Film> getPopular(){
+        ResponseEntity<FilmSearchResultDTO> responseEntity = restTemplate.getForEntity(filmPopularSearchUrl, FilmSearchResultDTO.class);
         return mapper.mapFilmList(responseEntity.getBody().getResults());
     }
 
