@@ -17,8 +17,6 @@
         };
 
         function link(scope) {
-            scope.isCollapsed = false;
-
             scope.open = function () {
                 $modal.open({
                     templateUrl: 'app/actors/actorFilms.html',

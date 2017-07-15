@@ -15,26 +15,29 @@ angular
         vm.searchBy = searchBy;
         vm.searchByYear = searchByYear;
 
-        vm.selectedSearchType = true;
-        vm.selectedSearchBy = true;
-        vm.selectedSearchByYear = true;
-
+        resetFilters();
 
         vm.isOpen = false;
 
         vm.getListData = getListData;
         vm.getListDataByYear = getListDataByYear;
         vm.toggleSearch = toggleSearch;
-        vm.toggleInRange = toggleInRange;
-        
+        // vm.toggleInRange = toggleInRange;
+        vm.resetFilters = resetFilters;
+
         vm.resetForm = resetForm;
         
         function resetForm() {
             vm.searchInput = '';
-            vm.testForm.$setPristine();
-
+            vm.searchForm.$setPristine();
             vm.isOpen = false;
             vm.films = [];
+        }
+
+        function resetFilters() {
+            vm.selectedSearchType = true;
+            vm.selectedSearchBy = true;
+            vm.selectedSearchByYear = true;
         }
 
         function getListData() {
@@ -44,32 +47,54 @@ angular
 
             removeList();
 
+            // switch(true) {
+            //     case vm.selectedSearchType:
+            //         console.log('film by name')
+            //         search.getFilms(vm.searchInput)
+            //             .then(function (data) {
+            //                 vm.films = data.data;
+            //             });
+            //         break;
+            //     case !vm.selectedSearchType:
+            //         console.log('actor')
+            //         search.getActors(vm.searchInput)
+            //             .then(function (data) {
+            //                 vm.actors = data;
+            //             });
+            //         break;
+            //     case vm.selectedSearchType && vm.selectedSearchBy:
+            //         console.log('film by year')
+            //         search.getFilmsByYear(vm.year)
+            //             .then(function (data) {
+            //                 vm.films = data.filmDTOs;
+            //             });
+            //         break;
+            //     case vm.selectedSearchType && !vm.selectedSearchBy:
+            //         console.log('film by range')
+            //         search.getFilmsInRange(vm.range1, vm.range2)
+            //             .then(function (data) {
+            //                 vm.films = [];
+            //
+            //                 angular.forEach(data, function(val) {
+            //                     vm.films = vm.films.concat(val.filmDTOs);
+            //                 });
+            //             });
+            //         break;
+            // }
+
+
             if (vm.selectedSearchType) {
                 search.getFilms(vm.searchInput)
                     .then(function (data) {
                         vm.films = data.data;
-                        vm.isOpen = false;
                     });
             } else {
                 search.getActors(vm.searchInput)
                     .then(function (data) {
-                        console.log(data)
-
                         vm.actors = data;
                     });
             }
 
-            // $scope.loading = false;
-            //
-            // $scope.endLoading = function(){
-            //     $scope.loading = false;
-            // }
-            //
-            // $scope.search = function() {
-            //     $scope.loading = true;
-            //
-            //     $timeout($scope.endLoading, 1000);
-            // }
 
         }
 
@@ -103,12 +128,12 @@ angular
             vm.searchByYear = !vm.searchByYear;
         }
 
-        function toggleInRange() {
-            vm.year = '';
-            vm.range1 = '';
-            vm.range2 = '';
-            vm.searchInRange = !vm.searchInRange;
-        }
+        // function toggleInRange() {
+        //     vm.year = '';
+        //     vm.range1 = '';
+        //     vm.range2 = '';
+        //     vm.searchInRange = !vm.searchInRange;
+        // }
 
         //TODO
         if (vm.genre) {
