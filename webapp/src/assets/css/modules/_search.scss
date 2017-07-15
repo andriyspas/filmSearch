@@ -34,13 +34,21 @@
   .text-center {
     padding-top: 40px;
 
-    p:nth-of-type(1) {
-      font-size: 52px;
+    h2:nth-of-type(1) {
+      font-size: 40px;
+
+      @media(min-width: 768px) {
+        font-size: 52px;
+      }
     }
 
-    p:nth-of-type(2) {
-      font-size: 28px;
+    h2:nth-of-type(2) {
+      font-size: 18px;
       font-weight: 100;
+
+      @media(min-width: 768px) {
+        font-size: 28px;
+      }
     }
   }
 }
@@ -48,8 +56,8 @@
 form {
   position: absolute;
   bottom: 40px;
-  right: 0;
-  left: 0;
+  right: 15px;
+  left: 15px;
   transform: scale3d(0.5,0.5,1);
   transition: all 0.5s;
   transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
