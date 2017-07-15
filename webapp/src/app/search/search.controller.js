@@ -6,12 +6,19 @@ angular
     .controller('searchController', searchController);
 
     /** @ngInject */
-    function searchController(search) {
+    function searchController(search, searchType, searchBy, searchByYear) {
+
         var vm = this;
 
-        vm.searchType = true;
-        vm.searchByYear = false;
-        vm.searchInRange = false;
+
+        vm.searchType = searchType;
+        vm.searchBy = searchBy;
+        vm.searchByYear = searchByYear;
+
+        vm.selectedSearchType = true;
+        vm.selectedSearchBy = true;
+        vm.selectedSearchByYear = true;
+
 
         vm.isOpen = false;
 
@@ -19,6 +26,16 @@ angular
         vm.getListDataByYear = getListDataByYear;
         vm.toggleSearch = toggleSearch;
         vm.toggleInRange = toggleInRange;
+        
+        vm.resetForm = resetForm;
+        
+        function resetForm() {
+            vm.searchInput = '';
+            vm.testForm.$setPristine();
+
+            vm.isOpen = false;
+            vm.films = [];
+        }
 
         function getListData() {
             if (!vm.searchInput) {
@@ -27,16 +44,17 @@ angular
 
             removeList();
 
-            if (vm.searchType) {
+            if (vm.selectedSearchType) {
                 search.getFilms(vm.searchInput)
                     .then(function (data) {
-                        vm.films = data;
-
+                        vm.films = data.data;
                         vm.isOpen = false;
                     });
             } else {
                 search.getActors(vm.searchInput)
                     .then(function (data) {
+                        console.log(data)
+
                         vm.actors = data;
                     });
             }

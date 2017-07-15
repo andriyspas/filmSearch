@@ -7,7 +7,7 @@
 
     /* @ngInject */
     function actors($modal) {
-        var directive = {
+        return {
             templateUrl: 'app/actors/actors.html',
             restrict: 'AE',
             scope: {
@@ -15,9 +15,8 @@
             },
             link: link
         };
-        return directive;
 
-        function link(scope, element, attrs) {
+        function link(scope) {
             scope.isCollapsed = false;
 
             scope.open = function () {
@@ -27,7 +26,7 @@
                     controllerAs: 'films',
                     resolve: {
                         films: function () {
-                            return scope.actor.filmDTOs;
+                            return scope.actor.filmList;
                         }
                     }
                 });
