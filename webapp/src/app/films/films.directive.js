@@ -13,13 +13,8 @@
             scope: {
                 film: '=',
                 index: '='
-            },
-            link: link
+            }
         };
-
-        function link(scope) {
-            scope.isCollapsed = false;
-        }
     }
 
 })();

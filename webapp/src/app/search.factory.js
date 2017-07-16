@@ -7,9 +7,10 @@ angular
 
         function getFilms(title) {
             return $http.get('http://localhost:8080/api/film/get/film/title/' + title)
-                .then(function (data) {
-                    return data.data;
-                });
+        }
+
+        function getMostPopularFilms() {
+            return $http.get('http://localhost:8080/api/film/get/popular')
         }
 
         function getActors(name) {
@@ -48,6 +49,7 @@ angular
 
         return {
             getFilms: getFilms,
+            getMostPopularFilms: getMostPopularFilms,
             getActors: getActors,
             getFilmsByYear: getFilmsByYear,
             getFilmsInRange: getFilmsInRange,
