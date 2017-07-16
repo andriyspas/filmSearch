@@ -6,19 +6,44 @@ angular
     .controller('searchController', searchController);
 
     /** @ngInject */
-    function searchController(search) {
+    function searchController(search, searchType, searchBy, searchByYear) {
+
         var vm = this;
 
-        vm.searchType = true;
-        vm.searchByYear = false;
-        vm.searchInRange = false;
+        vm.searchType = searchType;
+        vm.searchBy = searchBy;
+        vm.searchByYear = searchByYear;
+
+        vm.film = '';
+        vm.filmData = function (data) {
+            vm.film = data;
+        };
+
+
+        resetFilters();
 
         vm.isOpen = false;
 
         vm.getListData = getListData;
         vm.getListDataByYear = getListDataByYear;
         vm.toggleSearch = toggleSearch;
-        vm.toggleInRange = toggleInRange;
+        // vm.toggleInRange = toggleInRange;
+        vm.resetFilters = resetFilters;
+
+        vm.resetForm = resetForm;
+        
+        function resetForm() {
+            vm.searchInput = '';
+            vm.searchForm.$setPristine();
+            vm.isOpen = false;
+            vm.films = [];
+        }
+
+        function resetFilters() {
+            vm.selectedSearchType = true;
+            vm.selectedSearchBy = true;
+            vm.selectedSearchByYear = true;
+        }
 
         function getListData() {
             if (!vm.searchInput) {
@@ -27,12 +52,46 @@ angular
 
             removeList();
 
-            if (vm.searchType) {
+            // switch(true) {
+            //     case vm.selectedSearchType:
+            //         console.log('film by name')
+            //         search.getFilms(vm.searchInput)
+            //             .then(function (data) {
+            //                 vm.films = data.data;
+            //             });
+            //         break;
+            //     case !vm.selectedSearchType:
+            //         console.log('actor')
+            //         search.getActors(vm.searchInput)
+            //             .then(function (data) {
+            //                 vm.actors = data;
+            //             });
+            //         break;
+            //     case vm.selectedSearchType && vm.selectedSearchBy:
+            //         console.log('film by year')
+            //         search.getFilmsByYear(vm.year)
+            //             .then(function (data) {
+            //                 vm.films = data.filmDTOs;
+            //             });
+            //         break;
+            //     case vm.selectedSearchType && !vm.selectedSearchBy:
+            //         console.log('film by range')
+            //         search.getFilmsInRange(vm.range1, vm.range2)
+            //             .then(function (data) {
+            //                 vm.films = [];
+            //
+            //                 angular.forEach(data, function(val) {
+            //                     vm.films = vm.films.concat(val.filmDTOs);
+            //                 });
+            //             });
+            //         break;
+            // }
+
+
+            if (vm.selectedSearchType) {
                 search.getFilms(vm.searchInput)
                     .then(function (data) {
-                        vm.films = data;
-
-                        vm.isOpen = false;
+                        vm.films = data.data;
                     });
             } else {
                 search.getActors(vm.searchInput)
@@ -41,17 +100,6 @@ angular
                     });
             }
 
-            // $scope.loading = false;
-            //
-            // $scope.endLoading = function(){
-            //     $scope.loading = false;
-            // }
-            //
-            // $scope.search = function() {
-            //     $scope.loading = true;
-            //
-            //     $timeout($scope.endLoading, 1000);
-            // }
 
         }
 
@@ -85,12 +133,12 @@ angular
             vm.searchByYear = !vm.searchByYear;
         }
 
-        function toggleInRange() {
-            vm.year = '';
-            vm.range1 = '';
-            vm.range2 = '';
-            vm.searchInRange = !vm.searchInRange;
-        }
+        // function toggleInRange() {
+        //     vm.year = '';
+        //     vm.range1 = '';
+        //     vm.range2 = '';
+        //     vm.searchInRange = !vm.searchInRange;
+        // }
 
         //TODO
         if (vm.genre) {
@@ -100,5 +148,32 @@ angular
                 });
         }
 
+        search.getMostPopularFilms()
+            .then(function (data) {
+                vm.popularFilms = data.data;
+                sliderMostPopularFilms();
+            });
+
+        function sliderMostPopularFilms() {
+            vm.slider = new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: 2500,
+                autoplayDisableOnInteraction: false,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                slidesPerView: 4,
+                spaceBetween: 30,
+                breakpoints: {
+                    1023: {
+                        slidesPerView: 2,
+                        spaceBetween: 40
+                    },
+                    767: {
+                        slidesPerView: 1,
+                        spaceBetween: 30
+                    }
+                }
+            })
+        }
     }
 })();
