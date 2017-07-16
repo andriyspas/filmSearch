@@ -57,7 +57,11 @@ public class FilmService {
     }
 
     public List<Film> getPopular(){
-        return searchService.getPopular();
+        List<Film> popular = searchService.getPopular();
+        for(int i = 0; i < popular.size(); i++){
+            popular.get(i).setId((long)i);
+        }
+        return popular;
     }
 
     public Page<Film> getByGenre(String genreName, int page, int size){
