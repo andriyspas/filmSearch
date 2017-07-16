@@ -12,6 +12,10 @@ angular
                 });
         }
 
+        function getMostPopularFilms() {
+            return $http.get('http://localhost:8080/api/film/get/popular')
+        }
+
         function getActors(name) {
             return $http.get('http://localhost:8080/api/person/get/name/' + name)
                 .then(function (data) {
@@ -44,6 +48,7 @@ angular
 
         return {
             getFilms: getFilms,
+            getMostPopularFilms: getMostPopularFilms,
             getActors: getActors,
             getFilmsByYear: getFilmsByYear,
             getFilmsInRange: getFilmsInRange
