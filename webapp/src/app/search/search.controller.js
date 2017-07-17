@@ -16,7 +16,9 @@ angular
 
         vm.film = '';
         vm.filmData = function (data) {
+            console.log(data)
             vm.film = data;
+            console.log('test')
         };
 
 
@@ -27,7 +29,6 @@ angular
         vm.getListData = getListData;
         vm.getListDataByYear = getListDataByYear;
         vm.toggleSearch = toggleSearch;
-        // vm.toggleInRange = toggleInRange;
         vm.resetFilters = resetFilters;
 
         vm.resetForm = resetForm;
@@ -134,13 +135,6 @@ angular
             vm.searchByYear = !vm.searchByYear;
         }
 
-        // function toggleInRange() {
-        //     vm.year = '';
-        //     vm.range1 = '';
-        //     vm.range2 = '';
-        //     vm.searchInRange = !vm.searchInRange;
-        // }
-
         //TODO
         if (vm.genre) {
             search.getGenres()
@@ -153,6 +147,12 @@ angular
             .then(function (data) {
                 vm.popularFilms = data.data;
                 sliderMostPopularFilms();
+
+                vm.sliderStopAutoplay = function() {
+                    console.log(vm.slider);
+                    vm.slider.stopAutoplay();
+                    return false;
+                }
             });
 
         function sliderMostPopularFilms() {
