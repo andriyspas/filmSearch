@@ -15,13 +15,11 @@ angular
                 controllerAs: 'search'
             })
             .state('home.films', {
-               url: 'films',
                templateUrl: 'app/pages/films/films.html',
                controller: 'filmsController',
                controllerAs: 'films'
             })
             .state('home.actors', {
-               url: 'actors',
                templateUrl: 'app/pages/actors/actors.html',
                controller: 'actorsController',
                controllerAs: 'actors'
