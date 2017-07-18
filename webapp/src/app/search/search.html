@@ -43,7 +43,7 @@
     </form>
 
     <form
-        ng-hide="search.selectedSearchBy || !search.selectedSearchType"
+        ng-hide="!(search.selectedSearchBy || !search.selectedSearchType)"
         ng-class="{ 'open': search.isOpen }"
         ng-submit="search.getListDataByYear()">
 
@@ -62,26 +62,27 @@
             class="input-group"
             ng-hide="search.selectedSearchByYear">
 
-            <label class="control-label">To:</label>
-
+            <label class="control-label">From:</label>
             <input
-                class="form-control"
-                type="text"
-                ng-model="search.range2">
-
+                    class="form-control"
+                    type="text"
+                    ng-model="search.range1"
+                    ng-click="search.isOpen = true"
+                    ng-pattern="/^[0-9]*$/">
         </div>
 
         <div
             class="input-group"
             ng-hide="search.selectedSearchByYear">
 
-            <label class="control-label">From:</label>
 
+            <label class="control-label">To:</label>
             <input
-                class="form-control"
-                type="text"
-                ng-model="search.range1">
-
+                    class="form-control"
+                    type="text"
+                    ng-model="search.range2"
+                    ng-click="search.isOpen = true"
+                    ng-pattern="/^[0-9]*$/">
         </div>
 
         <span class="input-group-btn">
@@ -141,7 +142,6 @@
         </div>
 
     </div>
-
 </div>
 
 <div

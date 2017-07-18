@@ -32,7 +32,7 @@ angular
         vm.resetFilters = resetFilters;
 
         vm.resetForm = resetForm;
-        
+
         function resetForm() {
             vm.searchInput = '';
             vm.searchForm.$setPristine();
@@ -111,9 +111,11 @@ angular
                 search.getFilmsInRange(vm.range1, vm.range2)
                     .then(function (data) {
                         vm.films = [];
-
+                        console.log(data);
                         angular.forEach(data, function(val) {
-                            vm.films = vm.films.concat(val.filmDTOs);
+                            if(val.filmDTOs){
+                              vm.films = vm.films.concat(val.filmDTOs);
+                            }
                         });
                     });
             }
