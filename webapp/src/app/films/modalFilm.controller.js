@@ -3,9 +3,9 @@
 
     angular
         .module('webapp')
-        .controller('modal', modal);
+        .controller('modalFilm', modalFilm);
 
-        function modal($scope, film) {
+        function modalFilm($scope, film) {
             $scope.film = film;
         }
 })();

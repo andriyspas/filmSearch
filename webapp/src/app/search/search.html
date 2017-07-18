@@ -2,101 +2,107 @@
     class="container-fluid search"
     ng-controller="searchController">
 
-    <div class="text-center">
-        <h2>Lorem ipsum</h2>
-        <h2>is simply dummy text of the printing and typesetting industry</h2>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+                <h2>Lorem ipsum</h2>
+                <h2>is simply dummy text of the printing and typesetting industry</h2>
+            </div>
+        </div>
     </div>
 
-    <form
-        autocomplete="off"
-        name="search.searchForm"
-        ng-hide="!search.selectedSearchBy"
-        ng-class="{ 'open': search.isOpen }"
-        ng-submit="search.getListData()">
+    <div
+        class="row search-form"
+        ng-class="{ 'open': search.isOpen }">
 
-        <div class="input-group">
+        <div class="col-xs-12">
+            <form
+                autocomplete="off"
+                name="search.searchForm"
+                ng-show="search.selectedSearchBy"
+                ng-submit="search.getListData()">
 
-            <input
-                placeholder="Search"
-                name="name"
-                class="form-control"
-                type="text"
-                ng-model="search.searchInput"
-                required
-                ng-click="search.isOpen = true">
+                <div class="input-group">
 
-            <span class="input-group-btn">
-                <button
-                    type="submit"
-                    class="btn btn-link">
-                </button>
-            </span>
+                    <input
+                        placeholder="Search by name"
+                        name="name"
+                        class="form-control"
+                        type="text"
+                        ng-model="search.searchInput"
+                        required
+                        ng-click="search.isOpen = true">
 
+                    <span class="input-group-btn">
+                        <button
+                            type="submit"
+                            class="btn btn-link">
+                        </button>
+                    </span>
+
+                </div>
+
+            </form>
         </div>
+    </div>
 
-        <!--<div ng-messages="search.searchForm.name.$error">-->
-                <!--<span ng-message="required" class="error text-danger" role="alert">-->
-                    <!--You did not enter a field-->
-                <!--</span>-->
-        <!--</div>-->
+    <div
+        class="row search-form"
+        ng-class="{ 'open': search.isOpen }">
 
-    </form>
+        <div class="col-xs-12">
+            <form
+                ng-hide="search.selectedSearchBy || !search.selectedSearchType"
+                ng-submit="search.getListDataByYear()">
 
-    <form
-        ng-hide="!(search.selectedSearchBy || !search.selectedSearchType)"
-        ng-class="{ 'open': search.isOpen }"
-        ng-submit="search.getListDataByYear()">
+                <div class="input-group">
 
-        <div
-            class="input-group"
-            ng-show="search.selectedSearchByYear">
+                    <input
+                        ng-show="search.selectedSearchByYear"
+                        placeholder="Search by year"
+                        class="form-control"
+                        type="text"
+                        ng-model="search.year"
+                        ng-click="search.isOpen = true">
 
-            <input
-                class="form-control"
-                type="text"
-                ng-model="search.year"
-                ng-click="search.isOpen = true">
+                    <div
+                        class="search-range clearfix"
+                        ng-hide="search.selectedSearchByYear">
+
+                        <input
+                            placeholder="From date"
+                            class="form-control"
+                            type="text"
+                            ng-model="search.rangeFrom"
+                            ng-click="search.isOpen = true"
+                            ng-pattern="/^[0-9]*$/">
+
+                        <input
+                            placeholder="To date"
+                            class="form-control"
+                            type="text"
+                            ng-model="search.rangeTo"
+                            ng-click="search.isOpen = true"
+                            ng-pattern="/^[0-9]*$/">
+
+                    </div>
+
+                    <span class="input-group-btn">
+                        <button
+                            type="submit"
+                            class="btn btn-link">
+                        </button>
+                    </span>
+
+                </div>
+
+            </form>
         </div>
-
-        <div
-            class="input-group"
-            ng-hide="search.selectedSearchByYear">
-
-            <label class="control-label">From:</label>
-            <input
-                    class="form-control"
-                    type="text"
-                    ng-model="search.range1"
-                    ng-click="search.isOpen = true"
-                    ng-pattern="/^[0-9]*$/">
-        </div>
-
-        <div
-            class="input-group"
-            ng-hide="search.selectedSearchByYear">
-
-
-            <label class="control-label">To:</label>
-            <input
-                    class="form-control"
-                    type="text"
-                    ng-model="search.range2"
-                    ng-click="search.isOpen = true"
-                    ng-pattern="/^[0-9]*$/">
-        </div>
-
-        <span class="input-group-btn">
-            <button
-                type="submit"
-                class="btn btn-link">
-            </button>
-        </span>
-
-    </form>
+    </div>
 
 </div>
 
-<div class="container p-t-md films">
+<div class="container p-t-md custom-container-width">
 
     <div class="row">
         <h5 class="col-sm-4 m-b-md">Filters:</h5>
@@ -113,7 +119,6 @@
             </select>
         </div>
 
-
         <div class="col-sm-6 col-md-3">
             <select
                 ng-show="search.selectedSearchType"
@@ -127,7 +132,6 @@
             <select
                 ng-hide="search.selectedSearchBy || !search.selectedSearchType"
                 class="form-control m-b-md"
-                ng-change="search.toggleInRange()"
                 ng-model="search.selectedSearchByYear"
                 ng-options="item.value as item.name for item in search.searchByYear">
             </select>
@@ -145,7 +149,7 @@
 </div>
 
 <div
-    class="container p-t-md films"
+    class="container p-t-md custom-container-width"
     ng-show="search.films.length || search.actors.length">
 
     <div class="row">
@@ -157,20 +161,7 @@
         <div
             class="col-sm-6 col-md-4 col-lg-3 panel-group panel-films"
             ng-repeat="film in search.films track by $index"
-            ng-show="search.selectedSearchType && search.films && !search.year && !search.range1">
-
-            <films
-                film="film"
-                index="film.id"
-                ng-click="search.filmData(film)">
-            </films>
-
-        </div>
-
-        <div
-            class="col-sm-6 col-md-4 col-lg-3 panel-group panel-films"
-            ng-repeat="film in search.films track by $index"
-            ng-if="search.films && (search.year || search.range1)">
+            ng-show="search.films.length">
 
             <films
                 film="film"
@@ -183,11 +174,11 @@
         <div
             class="col-xs-12 panel-group panel-actors"
             ng-repeat="actor in search.actors track by $index"
-            ng-show="!search.selectedSearchType && search.actors">
+            ng-show="search.actors.length">
 
             <actors
                 actor="actor"
-                film-data="search.filmData()">
+                film-data="search.filmListData(actor.filmList)">
             </actors>
 
         </div>
@@ -197,7 +188,7 @@
 </div>
 
 <div
-    class="container p-t-md films"
+    class="container p-t-md custom-container-width"
     ng-hide="search.films.length || search.actors.length">
 
     <div class="row">
@@ -212,7 +203,7 @@
     </div>
 
     <div class="row">
-<button  ng-click="search.sliderStopAutoplay()">sfsdfg</button>
+
         <div class="swiper-container col-xs-12">
 
             <div class="swiper-wrapper">
@@ -221,11 +212,7 @@
                     class="swiper-slide panel-group panel-films"
                     ng-repeat="film in search.popularFilms track by $index">
 
-                    <films
-                        film="film"
-                        index="film.id"
-                        ng-click="search.filmData(film)">
-                    </films>
+                    <films film="film"></films>
 
                 </div>
 
@@ -236,8 +223,3 @@
     </div>
 
 </div>
-
-<modal
-    handler="search.film.id"
-    film="search.film">
-</modal>

@@ -1,0 +1,11 @@
+.swiper-wrapper-btn {
+  width: 70px;
+  top: 12px;
+  right: 5px;
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 12px;
+    background-size: contain;
+  }
+}

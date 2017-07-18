@@ -14,14 +14,6 @@ angular
         vm.searchBy = searchBy;
         vm.searchByYear = searchByYear;
 
-        vm.film = '';
-        vm.filmData = function (data) {
-            console.log(data)
-            vm.film = data;
-            console.log('test')
-        };
-
-
         resetFilters();
 
         vm.isOpen = false;
@@ -53,42 +45,6 @@ angular
 
             removeList();
 
-            // switch(true) {
-            //     case vm.selectedSearchType:
-            //         console.log('film by name')
-            //         search.getFilms(vm.searchInput)
-            //             .then(function (data) {
-            //                 vm.films = data.data;
-            //             });
-            //         break;
-            //     case !vm.selectedSearchType:
-            //         console.log('actor')
-            //         search.getActors(vm.searchInput)
-            //             .then(function (data) {
-            //                 vm.actors = data;
-            //             });
-            //         break;
-            //     case vm.selectedSearchType && vm.selectedSearchBy:
-            //         console.log('film by year')
-            //         search.getFilmsByYear(vm.year)
-            //             .then(function (data) {
-            //                 vm.films = data.filmDTOs;
-            //             });
-            //         break;
-            //     case vm.selectedSearchType && !vm.selectedSearchBy:
-            //         console.log('film by range')
-            //         search.getFilmsInRange(vm.range1, vm.range2)
-            //             .then(function (data) {
-            //                 vm.films = [];
-            //
-            //                 angular.forEach(data, function(val) {
-            //                     vm.films = vm.films.concat(val.filmDTOs);
-            //                 });
-            //             });
-            //         break;
-            // }
-
-
             if (vm.selectedSearchType) {
                 search.getFilms(vm.searchInput)
                     .then(function (data) {
@@ -100,15 +56,13 @@ angular
                         vm.actors = data;
                     });
             }
-
-
         }
 
         function getListDataByYear() {
             removeList();
 
-            if (vm.range1 && vm.range2) {
-                search.getFilmsInRange(vm.range1, vm.range2)
+            if (vm.rangeFrom && vm.rangeTo) {
+                search.getFilmsInRange(vm.rangeFrom, vm.rangeTo)
                     .then(function (data) {
                         vm.films = [];
                         console.log(data);
@@ -149,12 +103,6 @@ angular
             .then(function (data) {
                 vm.popularFilms = data.data;
                 sliderMostPopularFilms();
-
-                vm.sliderStopAutoplay = function() {
-                    console.log(vm.slider);
-                    vm.slider.stopAutoplay();
-                    return false;
-                }
             });
 
         function sliderMostPopularFilms() {
@@ -176,7 +124,9 @@ angular
                         spaceBetween: 30
                     }
                 }
-            })
+            });
         }
+
+
     }
 })();
