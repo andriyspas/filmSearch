@@ -15,24 +15,19 @@
 
     <header ng-include="'app/header/header.html'"></header>
 
-    <section ui-view>
+    <section ui-view></section>
 
-    </section>
-
+    <footer ng-include="'app/footer/footer.html'"></footer>
 
     <script src="assets/js/main.js"></script>
-
     <script src="app/index.module.js"></script>
     <script src="app/search.factory.js"></script>
     <script src="app/search.constant.js"></script>
     <script src="app/search/search.controller.js"></script>
     <script src="app/films/films.directive.js"></script>
-
-    <script src="app/modal/modal.directive.js"></script>
-
-
+    <script src="app/films/modalFilm.controller.js"></script>
     <script src="app/actors/actors.directive.js"></script>
-    <script src="app/actors/actorFilms.controller.js"></script>
+    <script src="app/actors/modalActorFilm.controller.js"></script>
     <script src="app/index.route.js"></script>
 
 </body>
