@@ -63,7 +63,10 @@ public class ProjectModelMapper extends ModelMapper {
     private void setGenres(Film film, FilmSearchDTO filmSearchDTO){
         List<Genre> genres = new ArrayList<>();
         for(int id : filmSearchDTO.getGenreIds()){
-            genres.add(genreRepository.findOne((long) id));
+            Genre genre = genreRepository.findOne((long) id);
+            if(genre != null){
+                genres.add(genre);
+            }
         }
         film.setGenres(genres);
     }
