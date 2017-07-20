@@ -1,0 +1,30 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+a {
+  display: block;
+  color: #000;
+
+  &:hover {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+.custom-container-width {
+  max-width: 440px;
+
+  @media(min-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+section {
+  min-height: calc(100vh - 140px);
+}

@@ -1,24 +1,4 @@
 @import "vendor/vendor";
 @import "partials/gutters";
+@import "partials/custom";
 @import "modules/modules";
-
-body {
-  font-family: 'Roboto', sans-serif;
-
-}
-
-button {
-  border: none;
-  background: transparent;
-}
-
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-.form-control:focus,
-textarea:focus {
-  outline: none;
-  box-shadow: none;
-  border-color: #ccc;
-}
