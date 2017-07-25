@@ -5,9 +5,9 @@
         .module('webapp')
         .directive('films', films);
 
-    /* @ngInject */
-    function films() {
-        var directive = {
+    /** @ngInject */
+    function films($modal) {
+        return {
             templateUrl: 'app/films/films.html',
             restrict: 'AE',
             scope: {
@@ -16,10 +16,19 @@
             },
             link: link
         };
-        return directive;
 
-        function link(scope, element, attrs) {
-            scope.isCollapsed = false;
+        function link(scope) {
+            scope.openModal = function () {
+                $modal.open({
+                    templateUrl: 'app/films/modalFilm.html',
+                    controller: 'modalFilm',
+                    resolve: {
+                        film: function () {
+                            return scope.film;
+                        }
+                    }
+                })
+            }
         }
     }
 

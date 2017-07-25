@@ -24,6 +24,9 @@ public class FilmSearchDTO {
     @JsonProperty("overview")
     private String plot;
 
+    @JsonProperty("genre_ids")
+    private int[] genreIds;
+
     @JsonProperty("original_language")
     private String language;
 

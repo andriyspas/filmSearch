@@ -47,7 +47,7 @@ public class Film {
     @Getter
     @Setter
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Genre> genre;
+    private List<Genre> genres;
 
     @Getter
     @Setter

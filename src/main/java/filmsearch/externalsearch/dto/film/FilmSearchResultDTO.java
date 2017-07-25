@@ -1,4 +1,4 @@
-package filmsearch.externalsearch;
+package filmsearch.externalsearch.dto.film;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SearchResultDTO {
+public class FilmSearchResultDTO {
 
     @JsonProperty("results")
     private List<FilmSearchDTO> results;
