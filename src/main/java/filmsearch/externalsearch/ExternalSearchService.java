@@ -45,11 +45,6 @@ public class ExternalSearchService {
         return mapper.mapFilmList(responseEntity.getBody().getResults());
     }
 
-    public List<Film> getPopular(){
-        ResponseEntity<FilmSearchResultDTO> responseEntity = restTemplate.getForEntity(filmPopularSearchUrl, FilmSearchResultDTO.class);
-        return mapper.mapFilmList(responseEntity.getBody().getResults());
-    }
-
     public List<Film> getTvShowByTitle(String title){
         ResponseEntity<FilmSearchResultDTO> responseEntity = restTemplate.getForEntity(tvSearchUrl + title, FilmSearchResultDTO.class);
         return mapper.mapFilmList(responseEntity.getBody().getResults());
