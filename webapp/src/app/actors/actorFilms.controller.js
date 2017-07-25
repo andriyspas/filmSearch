@@ -3,10 +3,10 @@
 
     angular
         .module('webapp')
-        .controller('actorFilms', actorFilms);
+        .controller('modalActorFilm', modalActorFilm);
 
-    /* @ngInject */
-    function actorFilms($modalInstance, films) {
+    /** @ngInject */
+    function modalActorFilm($modalInstance, films) {
         var vm = this;
 
         vm.years = [];
